@@ -39,14 +39,6 @@
   until: dnf_check is not failed
   retries: 4
   delay: 5
-  
-- name: Create a symbolic link of root home to /home/root
-  file:
-    src: "/{{ ansible_user }}"
-    dest: "/home/{{ ansible_user }}"
-    owner: "{{ ansible_user }}"
-    group: "{{ ansible_user }}"
-    state: link
 
 - name: Install ansible.cfg and vimrc in home directory
   template:
@@ -84,7 +76,7 @@
     group: "{{item}}"
     mode: 0700
   loop:
-    - "{{ansible_user}}"
+    - "ec2-user"
     - "{{username}}"
 
 - name: Put ssh-key in proper spot for student
@@ -95,7 +87,7 @@
     group: "{{ item }}"
     mode: 0400
   loop:
-    - "{{ansible_user}}"
+    - "ec2-user"
     - "{{username}}"
 
 - name: clean out /tmp/workshops
