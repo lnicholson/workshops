@@ -39,6 +39,14 @@
   until: dnf_check is not failed
   retries: 4
   delay: 5
+  
+  - name: Create a symbolic link of root home to /home/root
+  file:
+    src: "/{{ ansible_user }}"
+    dest: "/home/{{ ansible_user }}"
+    owner: "{{ ansible_user }}"
+    group: "{{ ansible_user }}"
+    state: link
 
 - name: Install ansible.cfg and vimrc in home directory
   template:
