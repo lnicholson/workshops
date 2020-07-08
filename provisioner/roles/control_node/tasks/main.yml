@@ -40,7 +40,7 @@
   retries: 4
   delay: 5
   
-  - name: Create a symbolic link of root home to /home/root
+- name: Create a symbolic link of root home to /home/root
   file:
     src: "/{{ ansible_user }}"
     dest: "/home/{{ ansible_user }}"
